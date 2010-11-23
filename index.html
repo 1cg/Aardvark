@@ -73,11 +73,10 @@
         environment while retaining all the functionality that Ant tasks provide.</p>
         <p>To use Aardvark, download and unzip a distribution, and put the /bin directory on your path.
         You can then run aadvark with the 'vark' command.  Aardvark will look for a file named 'build.vark'
-        which is a Gosu program</p>
+        which is a Gosu program.</p>
         <span class="sectionTitle">build.vark</span>
         <p>Here is an example build.vark file, which is structured just like a Gosu program, with some special sauce:</p>
-        <div class="varkfile">
-var srcDir = file("src")
+        <div class="varkfile">var srcDir = file("src")
 var classesDir = file("classes")
 var distDir = file("dist")
 
@@ -109,14 +108,12 @@ function run() {
 function clean() {
   Ant.delete(:dir = classesDir)
   Ant.delete(:dir = distDir)
-}
-        </div>
+}</div>
         <p>Note, in particular, the 'Ant' symbol, which exposes the entire Ant API as functions.</p>
 
         <span class="sectionTitle">Running Aardvark</span>
         <p>You run Aardvark exactly the same as you run Ant. From the directory which contains build.vark, simply run the "vark" executable followed by the desired target name:</p>
-        <div class="varkfile">
-$ vark jar
+        <div class="varkfile">$ vark jar
 Buildfile: myproject/build.vark
 
 compile:
@@ -128,24 +125,19 @@ jar:
       [jar] Building jar: myproject/dist/myproject.jar
 
 BUILD SUCCESSFUL
-Total time: 0 seconds
-        </div>
+Total time: 0 seconds</div>
         <p>If you'd like to use a .vark file that is in another directory and/or named other than build.vark, it is again just like Ant:</p>
-        <div class="varkfile">
-$ vark -f <i>other.vark</i>
+        <div class="varkfile">$ vark -f <i>other.vark</i>
 $ vark <i>path/to/build.vark</i>
-$ vark <i>path/to/other.vark</i>
-        </div>
+$ vark <i>path/to/other.vark</i></div>
         <p></p>
 
         <span class="sectionTitle">VEdit</span>
         <p>Aardvark ships with a built in graphical editor for vark files, 'vedit'.  You can edit a vark file by using the "vedit" executable in place of "vark"</p>
-        <div class="varkfile">
-$ vedit
+        <div class="varkfile">$ vedit
 $ vedit -f <i>other.vark</i>
 $ vedit <i>path/to/build.vark</i>
-$ vedit <i>path/to/other.vark</i>
-        </div>
+$ vedit <i>path/to/other.vark</i></div>
       </div>
     </div>
   </body> 
