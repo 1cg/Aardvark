@@ -71,9 +71,6 @@
         <p>Aardvark is a tool for building projects.  It is based on <a href="http://gosu-lang.org">Gosu</a> 
         and <a href="http://ant.apache.org/">Apache Ant</a>.  It is intended to provide a comfortable scripting
         environment while retaining all the functionality that Ant tasks provide.</p>
-        <p>To use Aardvark, download and unzip a distribution, and put the /bin directory on your path.
-        You can then run aadvark with the 'vark' command.  Aardvark will look for a file named 'build.vark'
-        which is a Gosu program.</p>
         <span class="sectionTitle">build.vark</span>
         <p>Here is an example build.vark file, which is structured just like a Gosu program, with some special sauce:</p>
         <div class="varkfile">var srcDir = file("src")
@@ -112,7 +109,8 @@ function clean() {
         <p>Note, in particular, the 'Ant' symbol, which exposes the entire Ant API as functions.</p>
 
         <span class="sectionTitle">Running Aardvark</span>
-        <p>You run Aardvark exactly the same as you run Ant. From the directory which contains build.vark, simply run the "vark" executable followed by the desired target name:</p>
+        <p>To use Aardvark, download and unzip a distribution, and put its bin/ directory on your path.</p>
+        <p>You run it exactly the same as how you run Ant. Within the directory which contains build.vark, simply run the "vark" executable followed by the desired target name:</p>
         <div class="varkfile">$ vark jar
 Buildfile: myproject/build.vark
 
