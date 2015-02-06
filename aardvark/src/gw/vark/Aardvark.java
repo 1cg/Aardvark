@@ -26,6 +26,7 @@ import gw.util.GosuStringUtil;
 import gw.util.Pair;
 import gw.util.StreamUtil;
 import gw.vark.annotations.Depends;
+import gw.vark.shell.InteractiveShell;
 import gw.vark.typeloader.AntlibTypeLoader;
 import org.apache.tools.ant.*;
 import org.apache.tools.ant.launch.AntMain;
@@ -136,6 +137,11 @@ public class Aardvark implements AntMain
       catch (ParseResultsException e) {
         logErr(e.getMessage());
         return EXITCODE_GOSU_VERIFY_FAILED;
+      }
+
+      if (options.isInteractive()) {
+        InteractiveShell.start(this, varkFile, gosuProgram);
+        return 0;
       }
 
       int exitCode = 1;
@@ -302,8 +308,11 @@ public class Aardvark implements AntMain
         for (int i = 0, parametersLength = parameters.length; i < parametersLength; i++) {
           IParameterInfo param = parameters[i];
           description += "\n  -" + param.getName();
-          if (methodInfo instanceof IOptionalParamCapable && ((IOptionalParamCapable) methodInfo).getDefaultValues()[i] != null) {
-            description += " (optional, default " + ((IOptionalParamCapable) methodInfo).getDefaultValues()[i] + ")";
+          if (methodInfo instanceof IOptionalParamCapable) {
+            IExpression defaultValue = ((IOptionalParamCapable) methodInfo).getDefaultValueExpressions()[i];
+            if (defaultValue != null) {
+              description += " (optional, default " + defaultValue.evaluate() + ")";
+            }
           }
           if (GosuStringUtil.isNotBlank(param.getDescription())) {
             description += ": " + param.getDescription();
